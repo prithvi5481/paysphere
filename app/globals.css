@@ -821,6 +821,7 @@
   gap: 0.5rem; /* gap-2 */
   padding-top: 1.5rem; /* py-6 */
   padding-bottom: 1.5rem; /* py-6 */
+  color: #1a1a1a;
 }
 
 .footer_name {
@@ -831,6 +832,7 @@
   justify-content: center;
   border-radius: 9999px; /* rounded-full */
   background-color: #e5e7eb; /* bg-gray-200 */
+  color: #1a1a1a;
 }
 
 @media (max-width: 1280px) {

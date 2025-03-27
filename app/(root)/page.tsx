@@ -3,9 +3,10 @@ import '../globals.css'
 import HeaderBox from '../components/HeaderBox'
 import TotalBalanceBox from '../components/TotalBalanceBox'
 import RightSidebar from '../components/RightSidebar'
+import { getLoggedInUser } from '@/lib/actions/user.actions'
 
-const Home = () => {
-  const loggedIn = {firstName: 'Prithvi', lastName: 'Singh', email: 'prithvi@paysphere.com'}
+const Home = async () => {
+  const loggedIn = await getLoggedInUser();
   return (
     <section className='home'>
       <div className='home-content'>
@@ -13,7 +14,7 @@ const Home = () => {
           <HeaderBox
             type='greeting'
             title='Welcome to PaySphere'
-            user={loggedIn?.firstName + ' ' + loggedIn?.lastName  || 'Guest'}
+            user={loggedIn?.name  || 'Guest'}
             subtitle='PaySphere is a banking platform that allows users to make payments and transfer money.'
           />
           <TotalBalanceBox 

@@ -20,6 +20,7 @@ import { Input } from "@/components/ui/input";
 import CustomInput from "./CustomInput";
 import { authFormSchema } from "@/lib/utils";
 import { useRouter } from "next/navigation";
+import { SignIn, SignUp } from "@/lib/actions/user.actions";
 
 const AuthForm = ({ type }: { type: "sign-in" | "sign-up" }) => {
   const router = useRouter();
@@ -35,6 +36,7 @@ const AuthForm = ({ type }: { type: "sign-in" | "sign-up" }) => {
       firstName: "",
       lastName: "",
       address: "",
+      city: '',
       state: "",
       postalCode: "",
       dateOfBirth: "",
@@ -47,14 +49,14 @@ const AuthForm = ({ type }: { type: "sign-in" | "sign-up" }) => {
     try {
       // sign up with appwrite and create plain link
       if(type === 'sign-up'){
-        // const newUser = await signUp(data);
-        // setUser(newUser)
+        const newUser = await SignUp(data);
+        setUser(newUser)
       }
       if(type === 'sign-in'){
-        // const response = await signIn({ email: data.email, password: data.password })
-        // if(response){
-        //   router.push('/');
-        // }
+        const response = await SignIn({ email: data.email, password: data.password })
+        if(response){
+          router.push('/');
+        }
       }
     } catch (error) {
       console.log(error)

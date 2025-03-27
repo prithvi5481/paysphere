@@ -6,6 +6,8 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
+export const parseStringify = (value: any) => JSON.parse(JSON.stringify(value));
+
 export function formatAmount(amount : number) : string {
   const formatter = new Intl.NumberFormat('en-US',{
     style: 'currency',
