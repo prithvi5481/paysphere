@@ -21,6 +21,7 @@ import CustomInput from "./CustomInput";
 import { authFormSchema } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 import { SignIn, SignUp } from "@/lib/actions/user.actions";
+import PlaidLink from "./PlaidLink";
 
 const AuthForm = ({ type }: { type: "sign-in" | "sign-up" }) => {
   const router = useRouter();
@@ -35,7 +36,7 @@ const AuthForm = ({ type }: { type: "sign-in" | "sign-up" }) => {
       password: "",
       firstName: "",
       lastName: "",
-      address: "",
+      address1: "",
       city: '',
       state: "",
       postalCode: "",
@@ -48,8 +49,20 @@ const AuthForm = ({ type }: { type: "sign-in" | "sign-up" }) => {
     setIsLoading(true);
     try {
       // sign up with appwrite and create plain link
+      const userData = {
+        firstName: data.firstName!,
+        lastName: data.lastName!,
+        address1: data.address1!,
+        city: data.city!,
+        state: data.state!,
+        postalCode: data.postalCode!,
+        dateOfBirth: data.dateOfBirth!,
+        ssn: data.ssn!,
+        email: data.email,
+        password: data.password
+      }
       if(type === 'sign-up'){
-        const newUser = await SignUp(data);
+        const newUser = await SignUp(userData);
         setUser(newUser)
       }
       if(type === 'sign-in'){
@@ -90,8 +103,13 @@ const AuthForm = ({ type }: { type: "sign-in" | "sign-up" }) => {
         </div>
       </header>
       {user ? (
-        <div className="flex flex-col gap-4">PlaidLink</div>
-      ) : (
+        <div className="flex flex-col gap-4">
+          <PlaidLink 
+            user={user}
+            variant='primary'
+          />
+        </div>
+      ) : ( 
         <>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 flex flex-col gap-4">
@@ -116,7 +134,7 @@ const AuthForm = ({ type }: { type: "sign-in" | "sign-up" }) => {
                       form={form}
                       label="Address"
                       placeholder="Enter your address"
-                      name="address"
+                      name="address1"
                     />
                     <CustomInput
                       form={form}
@@ -200,7 +218,7 @@ const AuthForm = ({ type }: { type: "sign-in" | "sign-up" }) => {
             </Link>
           </footer>
         </>
-      )}
+      )} 
     </section>
   );
 };

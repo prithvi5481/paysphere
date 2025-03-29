@@ -15,12 +15,12 @@ const Footer = ({user} : FooterProps) => {
     <footer className='footer'>
       <div className='footer_name'>
         <p className='text-xl font-bold text-gray-600'>
-          {user.name[0].toUpperCase()}
+          {user.firstName[0].toUpperCase()}
         </p>
       </div>
       <div className='footer_email'>
         <h1 className='text-14 truncate text-gray-800 font-semibold'>
-          {user.name}
+          {`${user.firstName} ${user.lastName}`}
         </h1>
         <p className='text-14 truncate font-ibm-plex-serif text-gray-800'>
           {user.email}
