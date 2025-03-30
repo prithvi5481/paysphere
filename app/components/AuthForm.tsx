@@ -152,7 +152,7 @@ const AuthForm = ({ type }: { type: "sign-in" | "sign-up" }) => {
                       <CustomInput
                         form={form}
                         label="Postal Code"
-                        placeholder="ex: 324833"
+                        placeholder="ex: 32483"
                         name="postalCode"
                       />
                     </div>
