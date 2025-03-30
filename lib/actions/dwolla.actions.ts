@@ -69,6 +69,8 @@ export const createTransfer = async ({
   destinationFundingSourceUrl,
   amount,
 }: TransferParams) => {
+  console.log("Source Funding Source URL:", sourceFundingSourceUrl);
+  console.log("Destination Funding Source URL:", destinationFundingSourceUrl);
   try {
     const requestBody = {
       _links: {
